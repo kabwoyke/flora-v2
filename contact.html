@@ -1,0 +1,449 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Contact – Flora Prime Properties</title>
+  <script src="https://cdn.tailwindcss.com"></script>
+  <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,400;0,600;0,700;1,400&family=Inter:wght@300;400;500;600&display=swap" rel="stylesheet" />
+  <script>
+    tailwind.config = {
+      theme: {
+        extend: {
+          colors: {
+            gold: '#C8962A',
+            'gold-light': '#D4A843',
+            forest: '#4A6741',
+            'forest-dark': '#3A5232',
+            sage: '#7A9E76',
+          },
+          fontFamily: {
+            serif: ['Playfair Display', 'Georgia', 'serif'],
+            sans: ['Inter', 'system-ui', 'sans-serif'],
+          },
+        }
+      }
+    }
+  </script>
+  <style>
+    html { scroll-behavior: smooth; }
+    .page-hero { background: linear-gradient(135deg, #4A6741 0%, #6B8A5E 35%, #B8A96A 75%, #C8962A 100%); }
+    .section-divider { width: 48px; height: 3px; background: #C8962A; margin: 12px auto 0; }
+    input, textarea, select { outline: none; transition: border-color 0.2s, box-shadow 0.2s; }
+    input:focus, textarea:focus, select:focus {
+      border-color: #C8962A !important;
+      box-shadow: 0 0 0 3px rgba(200,150,42,0.12);
+    }
+    .info-card { border-left: 3px solid #C8962A; }
+    .faq-item { border-bottom: 1px solid #F3F4F6; }
+    .faq-answer { max-height: 0; overflow: hidden; transition: max-height 0.35s ease, padding 0.2s; }
+    .faq-item.open .faq-answer { max-height: 200px; padding-bottom: 12px; }
+    .faq-item.open .faq-icon { transform: rotate(45deg); }
+    .faq-icon { transition: transform 0.25s ease; }
+    /* success toast */
+    #toast { transition: opacity 0.4s, transform 0.4s; }
+  </style>
+</head>
+<body class="font-sans text-gray-700 bg-white">
+
+  <!-- NAV -->
+  <nav class="fixed top-0 left-0 right-0 z-50 bg-white shadow-sm">
+  <div class="max-w-6xl mx-auto px-6 flex items-center justify-between h-14">
+    <a href="index.html" class="flex items-center gap-1 text-lg font-bold tracking-wide">
+      <span class="text-gold font-serif italic">FLORA</span>
+      <span class="text-gray-800 font-serif"> PRIME</span>
+    </a>
+
+    <ul class="hidden md:flex items-center gap-8 text-sm font-medium text-gray-600">
+      <li><a href="index.html" class="hover:text-gold transition-colors">Home</a></li>
+      <li><a href="about.html" class="hover:text-gold transition-colors">About</a></li>
+      <li><a href="index.html#services" class="hover:text-gold transition-colors">Services</a></li>
+      <li><a href="properties.html" class="text-gold font-semibold">Properties</a></li>
+      <li><a href="contact.html" class="hover:text-gold transition-colors">Contact</a></li>
+    </ul>
+
+    <a href="contact.html" class="hidden md:inline-block bg-gold hover:bg-gold-light text-white text-xs font-semibold px-5 py-2 rounded transition-colors">
+      Get In Touch
+    </a>
+
+    <input type="checkbox" id="menu-toggle" class="hidden peer">
+
+    <label for="menu-toggle" class="block md:hidden text-gray-600 hover:text-gold cursor-pointer select-none">
+      <svg class="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
+        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M4 6h16M4 12h16M4 18h16"></path>
+      </svg>
+    </label>
+
+    <div class="hidden peer-checked:block md:hidden bg-white border-t border-gray-100 shadow-lg absolute left-0 right-0 top-14 px-6 py-4">
+      <ul class="flex flex-col gap-4 text-sm font-medium text-gray-600">
+        <li><a href="index.html" class="block  hover:text-gold transition-colors py-1">Home</a></li>
+        <li><a href="about.html" class="block hover:text-gold transition-colors py-1">About</a></li>
+        <li><a href="index.html#services" class="block hover:text-gold transition-colors py-1">Services</a></li>
+        <li><a href="properties.html" class="block  font-semibold py-1">Properties</a></li>
+        <li><a href="contact.html" class="block text-gold hover:text-gold transition-colors py-1">Contact</a></li>
+        <hr class="border-gray-100 my-1">
+        <li>
+          <a href="contact.html" class="block text-center bg-gold hover:bg-gold-light text-white text-xs font-semibold px-5 py-2.5 rounded transition-colors w-full">
+            Get In Touch
+          </a>
+        </li>
+      </ul>
+    </div>
+  </div>
+</nav>
+
+  <!-- HERO -->
+  <section class="page-hero pt-14 min-h-[300px] flex flex-col items-center justify-center text-center px-6 pb-20">
+    <p class="text-gold-light text-xs font-semibold uppercase tracking-[0.2em] mb-3">We'd Love to Hear from You</p>
+    <h1 class="text-white font-serif text-4xl md:text-5xl font-bold leading-tight mb-4 drop-shadow">Get In Touch</h1>
+    <p class="text-white/70 text-sm max-w-md">Our agents are ready to help you find the perfect property or answer any question about buying and selling in Kenya.</p>
+  </section>
+
+  <!-- CONTACT INFO CARDS -->
+  <section class="bg-white py-16 px-6">
+    <div class="max-w-5xl mx-auto">
+      <div class="grid sm:grid-cols-2 md:grid-cols-4 gap-5 -mt-20 relative z-10">
+
+        <div class="info-card bg-white rounded-2xl shadow-lg p-6 flex flex-col gap-3">
+          <div class="w-10 h-10 bg-forest/10 rounded-xl flex items-center justify-center">
+            <svg xmlns="http://www.w3.org/2000/svg" class="h-5 w-5 text-forest" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+              <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M17.657 16.657L13.414 20.9a1.998 1.998 0 01-2.827 0l-4.244-4.243a8 8 0 1111.314 0z"/><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M15 11a3 3 0 11-6 0 3 3 0 016 0z"/>
+            </svg>
+          </div>
+          <div>
+            <p class="text-xs font-semibold text-gray-800 mb-0.5">Our Office</p>
+            <p class="text-xs text-gray-500 leading-relaxed">P.O Box 21099-01803<br>Nairobi, Kenya</p>
+          </div>
+        </div>
+
+        <div class="info-card bg-white rounded-2xl shadow-lg p-6 flex flex-col gap-3">
+          <div class="w-10 h-10 bg-gold/10 rounded-xl flex items-center justify-center">
+            <svg xmlns="http://www.w3.org/2000/svg" class="h-5 w-5 text-gold" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+              <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M3 5a2 2 0 012-2h3.28a1 1 0 01.948.684l1.498 4.493a1 1 0 01-.502 1.21l-2.257 1.13a11.042 11.042 0 005.516 5.516l1.13-2.257a1 1 0 011.21-.502l4.493 1.498a1 1 0 01.684.949V19a2 2 0 01-2 2h-1C9.716 21 3 14.284 3 6V5z" />
+            </svg>
+          </div>
+          <div>
+            <p class="text-xs font-semibold text-gray-800 mb-0.5">Phone</p>
+            <a href="tel:+254759887156" class="text-xs text-gray-500 hover:text-gold transition-colors">+254 759 887 156</a>
+          </div>
+        </div>
+
+        <div class="info-card bg-white rounded-2xl shadow-lg p-6 flex flex-col gap-3">
+          <div class="w-10 h-10 bg-forest/10 rounded-xl flex items-center justify-center">
+            <svg xmlns="http://www.w3.org/2000/svg" class="h-5 w-5 text-forest" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+              <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M3 8l7.89 5.26a2 2 0 002.22 0L21 8M5 19h14a2 2 0 002-2V7a2 2 0 00-2-2H5a2 2 0 00-2 2v10a2 2 0 002 2z" />
+            </svg>
+          </div>
+          <div>
+            <p class="text-xs font-semibold text-gray-800 mb-0.5">Email</p>
+            <a href="mailto:floraprime@gmail.com" class="text-xs text-gray-500 hover:text-gold transition-colors">floraprime@gmail.com</a>
+          </div>
+        </div>
+
+        <div class="info-card bg-white rounded-2xl shadow-lg p-6 flex flex-col gap-3">
+          <div class="w-10 h-10 bg-gold/10 rounded-xl flex items-center justify-center">
+            <svg xmlns="http://www.w3.org/2000/svg" class="h-5 w-5 text-gold" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+              <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 8v4l3 3m6-3a9 9 0 11-18 0 9 9 0 0118 0z" />
+            </svg>
+          </div>
+          <div>
+            <p class="text-xs font-semibold text-gray-800 mb-0.5">Working Hours</p>
+            <p class="text-xs text-gray-500 leading-relaxed">Mon–Fri: 8am – 6pm<br>Sat: 9am – 3pm</p>
+          </div>
+        </div>
+
+      </div>
+    </div>
+  </section>
+
+  <!-- FORM + MAP -->
+  <section class="bg-gray-50 py-10 px-6 pb-20">
+    <div class="max-w-5xl mx-auto grid md:grid-cols-2 gap-10 items-start">
+
+      <!-- FORM -->
+      <div class="bg-white rounded-2xl shadow-sm border border-gray-100 p-8">
+        <p class="text-gold text-xs font-semibold uppercase tracking-widest mb-2">Send a Message</p>
+        <h2 class="text-xl font-serif font-semibold text-gray-800 mb-6">How can we help you?</h2>
+
+        <div class="space-y-5" id="contactForm">
+          <div class="grid grid-cols-2 gap-4">
+            <div>
+              <label class="block text-xs font-medium text-gray-600 mb-1.5">First Name <span class="text-red-400">*</span></label>
+              <input id="firstName" type="text" placeholder="e.g. John"
+                class="w-full border border-gray-200 rounded-lg px-3.5 py-2.5 text-sm text-gray-700 placeholder-gray-300" />
+            </div>
+            <div>
+              <label class="block text-xs font-medium text-gray-600 mb-1.5">Last Name <span class="text-red-400">*</span></label>
+              <input id="lastName" type="text" placeholder="e.g. Kamau"
+                class="w-full border border-gray-200 rounded-lg px-3.5 py-2.5 text-sm text-gray-700 placeholder-gray-300" />
+            </div>
+          </div>
+
+          <div>
+            <label class="block text-xs font-medium text-gray-600 mb-1.5">Email Address <span class="text-red-400">*</span></label>
+            <input id="email" type="email" placeholder="john@email.com"
+              class="w-full border border-gray-200 rounded-lg px-3.5 py-2.5 text-sm text-gray-700 placeholder-gray-300" />
+          </div>
+
+          <div>
+            <label class="block text-xs font-medium text-gray-600 mb-1.5">Phone Number</label>
+            <input id="phone" type="tel" placeholder="+254 7XX XXX XXX"
+              class="w-full border border-gray-200 rounded-lg px-3.5 py-2.5 text-sm text-gray-700 placeholder-gray-300" />
+          </div>
+
+          <div>
+            <label class="block text-xs font-medium text-gray-600 mb-1.5">Service of Interest</label>
+            <select id="service" class="w-full border border-gray-200 rounded-lg px-3.5 py-2.5 text-sm text-gray-600 bg-white">
+              <option value="">Select a service…</option>
+              <option>Property Buying</option>
+              <option>Property Selling</option>
+              <option>Legal Compliance</option>
+              <option>Property Valuation</option>
+              <option>General Inquiry</option>
+            </select>
+          </div>
+
+          <div>
+            <label class="block text-xs font-medium text-gray-600 mb-1.5">Budget Range</label>
+            <select id="budget" class="w-full border border-gray-200 rounded-lg px-3.5 py-2.5 text-sm text-gray-600 bg-white">
+              <option value="">Select a range…</option>
+              <option>Under KES 5M</option>
+              <option>KES 5M – 10M</option>
+              <option>KES 10M – 20M</option>
+              <option>Above KES 20M</option>
+            </select>
+          </div>
+
+          <div>
+            <label class="block text-xs font-medium text-gray-600 mb-1.5">Message <span class="text-red-400">*</span></label>
+            <textarea id="message" rows="4" placeholder="Tell us about your property needs, preferred location, size…"
+              class="w-full border border-gray-200 rounded-lg px-3.5 py-2.5 text-sm text-gray-700 placeholder-gray-300 resize-none"></textarea>
+          </div>
+
+          <button onclick="submitForm()"
+            class="w-full bg-gold hover:bg-gold-light text-white font-semibold text-sm py-3.5 rounded-lg transition-colors shadow flex items-center justify-center gap-2">
+            <svg xmlns="http://www.w3.org/2000/svg" class="h-4 w-4" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+              <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 19l9 2-9-18-9 18 9-2zm0 0v-8"/>
+            </svg>
+            Send Message
+          </button>
+        </div>
+
+        <!-- Success toast -->
+        <div id="toast" class="hidden mt-4 bg-green-50 border border-green-200 rounded-xl p-4 flex items-center gap-3">
+          <div class="w-8 h-8 bg-green-100 rounded-full flex items-center justify-center flex-shrink-0">
+            <svg xmlns="http://www.w3.org/2000/svg" class="h-4 w-4 text-green-600" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+              <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M5 13l4 4L19 7"/>
+            </svg>
+          </div>
+          <div>
+            <p class="text-sm font-semibold text-green-800">Message sent!</p>
+            <p class="text-xs text-green-600 mt-0.5">One of our agents will reach out to you within 24 hours.</p>
+          </div>
+        </div>
+      </div>
+
+      <!-- Map + extra info -->
+      <div class="space-y-6">
+        <!-- Map -->
+        <div class="rounded-2xl overflow-hidden shadow-sm border border-gray-200 h-72">
+          <iframe
+            title="Flora Prime Nairobi"
+            width="100%"
+            height="100%"
+            style="border:0"
+            loading="lazy"
+            src="https://www.openstreetmap.org/export/embed.html?bbox=36.78,-1.32,36.9,-1.24&layer=mapnik&marker=-1.286389,36.817223">
+          </iframe>
+        </div>
+
+        <!-- Social -->
+        <div class="bg-white rounded-2xl border border-gray-100 shadow-sm p-6">
+          <p class="text-xs font-semibold text-gray-800 uppercase tracking-widest mb-4">Follow Us</p>
+          <div class="flex gap-3">
+            <a href="#" class="flex items-center gap-2 border border-gray-200 hover:border-gold text-xs text-gray-600 hover:text-gold px-4 py-2.5 rounded-lg transition-colors">
+              <svg xmlns="http://www.w3.org/2000/svg" class="h-4 w-4" fill="currentColor" viewBox="0 0 24 24"><path d="M18 2h-3a5 5 0 00-5 5v3H7v4h3v8h4v-8h3l1-4h-4V7a1 1 0 011-1h3z"/></svg>
+              Facebook
+            </a>
+            <a href="#" class="flex items-center gap-2 border border-gray-200 hover:border-gold text-xs text-gray-600 hover:text-gold px-4 py-2.5 rounded-lg transition-colors">
+              <svg xmlns="http://www.w3.org/2000/svg" class="h-4 w-4" fill="none" stroke="currentColor" viewBox="0 0 24 24"><rect x="2" y="2" width="20" height="20" rx="5" ry="5" stroke-width="2"/><path d="M16 11.37A4 4 0 1112.63 8 4 4 0 0116 11.37z" stroke-width="2"/><line x1="17.5" y1="6.5" x2="17.51" y2="6.5" stroke-width="2"/></svg>
+              Instagram
+            </a>
+            <a href="#" class="flex items-center gap-2 border border-gray-200 hover:border-gold text-xs text-gray-600 hover:text-gold px-4 py-2.5 rounded-lg transition-colors">
+              <svg xmlns="http://www.w3.org/2000/svg" class="h-4 w-4" fill="currentColor" viewBox="0 0 24 24"><path d="M16 8a6 6 0 016 6v7h-4v-7a2 2 0 00-2-2 2 2 0 00-2 2v7h-4v-7a6 6 0 016-6zM2 9h4v12H2z"/><circle cx="4" cy="4" r="2"/></svg>
+              LinkedIn
+            </a>
+          </div>
+        </div>
+
+        <!-- WhatsApp CTA -->
+        <a href="https://wa.me/254759887156" target="_blank"
+           class="flex items-center gap-4 bg-[#25D366] hover:bg-[#1DB954] text-white rounded-2xl p-5 shadow transition-colors">
+          <div class="w-10 h-10 bg-white/20 rounded-xl flex items-center justify-center flex-shrink-0">
+            <svg xmlns="http://www.w3.org/2000/svg" class="h-6 w-6 text-white" fill="currentColor" viewBox="0 0 24 24">
+              <path d="M17.472 14.382c-.297-.149-1.758-.867-2.03-.967-.273-.099-.471-.148-.67.15-.197.297-.767.966-.94 1.164-.173.199-.347.223-.644.075-.297-.15-1.255-.463-2.39-1.475-.883-.788-1.48-1.761-1.653-2.059-.173-.297-.018-.458.13-.606.134-.133.298-.347.446-.52.149-.174.198-.298.298-.497.099-.198.05-.371-.025-.52-.075-.149-.669-1.612-.916-2.207-.242-.579-.487-.5-.669-.51-.173-.008-.371-.01-.57-.01-.198 0-.52.074-.792.372-.272.297-1.04 1.016-1.04 2.479 0 1.462 1.065 2.875 1.213 3.074.149.198 2.096 3.2 5.077 4.487.709.306 1.262.489 1.694.625.712.227 1.36.195 1.871.118.571-.085 1.758-.719 2.006-1.413.248-.694.248-1.289.173-1.413-.074-.124-.272-.198-.57-.347m-5.421 7.403h-.004a9.87 9.87 0 01-5.031-1.378l-.361-.214-3.741.982.998-3.648-.235-.374a9.86 9.86 0 01-1.51-5.26c.001-5.45 4.436-9.884 9.888-9.884 2.64 0 5.122 1.03 6.988 2.898a9.825 9.825 0 012.893 6.994c-.003 5.45-4.437 9.884-9.885 9.884m8.413-18.297A11.815 11.815 0 0012.05 0C5.495 0 .16 5.335.157 11.892c0 2.096.547 4.142 1.588 5.945L.057 24l6.305-1.654a11.882 11.882 0 005.683 1.448h.005c6.554 0 11.89-5.335 11.893-11.893A11.821 11.821 0 0020.885 3.49"/>
+            </svg>
+          </div>
+          <div>
+            <p class="font-semibold text-sm">Chat on WhatsApp</p>
+            <p class="text-white/80 text-xs mt-0.5">Quick response from our agents</p>
+          </div>
+          <svg xmlns="http://www.w3.org/2000/svg" class="h-5 w-5 ml-auto opacity-70" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 5l7 7-7 7"/>
+          </svg>
+        </a>
+      </div>
+    </div>
+  </section>
+
+  <!-- FAQ -->
+  <section class="bg-white py-20 px-6">
+    <div class="max-w-3xl mx-auto">
+      <div class="text-center mb-12">
+        <p class="text-gold text-xs font-semibold uppercase tracking-widest mb-2">Frequently Asked</p>
+        <h2 class="text-2xl md:text-3xl font-serif font-semibold text-gray-800">Common Questions</h2>
+        <div class="section-divider"></div>
+      </div>
+
+      <div class="space-y-0 border-t border-gray-100 rounded-2xl overflow-hidden shadow-sm">
+
+        <div class="faq-item bg-white px-6 py-5 cursor-pointer" onclick="toggleFAQ(this)">
+          <div class="flex items-center justify-between">
+            <p class="text-sm font-semibold text-gray-800 pr-4">How do I verify a property's title deed?</p>
+            <span class="faq-icon w-7 h-7 bg-gray-100 rounded-full flex items-center justify-center flex-shrink-0 text-gray-500 text-lg font-light">+</span>
+          </div>
+          <div class="faq-answer text-xs text-gray-500 leading-relaxed pt-3">
+            All properties listed by Flora Prime have already undergone title verification through the Ministry of Lands. We share the search certificate with buyers before any deposit is made. You can also independently conduct a title search at any Lands Registry office across Kenya.
+          </div>
+        </div>
+
+        <div class="faq-item bg-white px-6 py-5 cursor-pointer" onclick="toggleFAQ(this)">
+          <div class="flex items-center justify-between">
+            <p class="text-sm font-semibold text-gray-800 pr-4">Do you offer payment plans or instalment options?</p>
+            <span class="faq-icon w-7 h-7 bg-gray-100 rounded-full flex items-center justify-center flex-shrink-0 text-gray-500 text-lg font-light">+</span>
+          </div>
+          <div class="faq-answer text-xs text-gray-500 leading-relaxed pt-3">
+            Yes. For qualifying properties, we offer structured instalment plans of 6, 12, or 24 months with a deposit. Contact our agents for the specific terms that apply to a property you are interested in.
+          </div>
+        </div>
+
+        <div class="faq-item bg-white px-6 py-5 cursor-pointer" onclick="toggleFAQ(this)">
+          <div class="flex items-center justify-between">
+            <p class="text-sm font-semibold text-gray-800 pr-4">What fees should I expect when buying property?</p>
+            <span class="faq-icon w-7 h-7 bg-gray-100 rounded-full flex items-center justify-center flex-shrink-0 text-gray-500 text-lg font-light">+</span>
+          </div>
+          <div class="faq-answer text-xs text-gray-500 leading-relaxed pt-3">
+            Typical transaction costs include stamp duty (2–4% of value), legal fees, and transfer fees. Flora Prime's agents provide a full cost breakdown before you commit, so there are no unexpected costs.
+          </div>
+        </div>
+
+        <div class="faq-item bg-white px-6 py-5 cursor-pointer" onclick="toggleFAQ(this)">
+          <div class="flex items-center justify-between">
+            <p class="text-sm font-semibold text-gray-800 pr-4">Can I buy property in Kenya if I live abroad?</p>
+            <span class="faq-icon w-7 h-7 bg-gray-100 rounded-full flex items-center justify-center flex-shrink-0 text-gray-500 text-lg font-light">+</span>
+          </div>
+          <div class="faq-answer text-xs text-gray-500 leading-relaxed pt-3">
+            Absolutely. We work with diaspora clients regularly. Transactions can be conducted remotely via power of attorney, and we facilitate virtual site visits and video walkthroughs. Reach out via WhatsApp or email to begin.
+          </div>
+        </div>
+
+        <div class="faq-item bg-white px-6 py-5 cursor-pointer" onclick="toggleFAQ(this)">
+          <div class="flex items-center justify-between">
+            <p class="text-sm font-semibold text-gray-800 pr-4">How long does the sale process typically take?</p>
+            <span class="faq-icon w-7 h-7 bg-gray-100 rounded-full flex items-center justify-center flex-shrink-0 text-gray-500 text-lg font-light">+</span>
+          </div>
+          <div class="faq-answer text-xs text-gray-500 leading-relaxed pt-3">
+            A typical property sale takes 30–90 days from offer acceptance to title transfer, depending on the property type and Lands Registry timelines. Our legal team actively follows up to keep things on track.
+          </div>
+        </div>
+
+      </div>
+    </div>
+  </section>
+
+  <!-- FOOTER -->
+  <footer class="bg-gray-900 text-gray-400 py-12 px-6">
+    <div class="max-w-5xl mx-auto grid md:grid-cols-3 gap-10">
+      <div>
+        <div class="flex items-center gap-1 mb-3">
+          <span class="text-gold font-serif italic font-bold text-lg">FLORA</span>
+          <span class="text-white font-serif font-bold text-lg"> PRIME</span>
+        </div>
+        <p class="text-xs leading-relaxed mb-4">Turning your land and home dreams into reality with professional expertise and personalised service.</p>
+        <div class="flex gap-3">
+          <a href="#" class="w-7 h-7 rounded-full bg-gray-700 hover:bg-gold flex items-center justify-center transition-colors">
+            <svg xmlns="http://www.w3.org/2000/svg" class="h-3.5 w-3.5 text-white" fill="currentColor" viewBox="0 0 24 24"><path d="M18 2h-3a5 5 0 00-5 5v3H7v4h3v8h4v-8h3l1-4h-4V7a1 1 0 011-1h3z"/></svg>
+          </a>
+          <a href="#" class="w-7 h-7 rounded-full bg-gray-700 hover:bg-gold flex items-center justify-center transition-colors">
+            <svg xmlns="http://www.w3.org/2000/svg" class="h-3.5 w-3.5 text-white" fill="none" stroke="currentColor" viewBox="0 0 24 24"><rect x="2" y="2" width="20" height="20" rx="5" ry="5" stroke-width="2"/><path d="M16 11.37A4 4 0 1112.63 8 4 4 0 0116 11.37z" stroke-width="2"/><line x1="17.5" y1="6.5" x2="17.51" y2="6.5" stroke-width="2"/></svg>
+          </a>
+          <a href="#" class="w-7 h-7 rounded-full bg-gray-700 hover:bg-gold flex items-center justify-center transition-colors">
+            <svg xmlns="http://www.w3.org/2000/svg" class="h-3.5 w-3.5 text-white" fill="currentColor" viewBox="0 0 24 24"><path d="M16 8a6 6 0 016 6v7h-4v-7a2 2 0 00-2-2 2 2 0 00-2 2v7h-4v-7a6 6 0 016-6zM2 9h4v12H2z"/><circle cx="4" cy="4" r="2"/></svg>
+          </a>
+        </div>
+      </div>
+      <div>
+        <h4 class="text-white font-semibold text-sm mb-4">Quick Links</h4>
+        <ul class="space-y-2 text-xs">
+          <li><a href="index.html" class="hover:text-gold transition-colors">Home</a></li>
+          <li><a href="about.html" class="hover:text-gold transition-colors">About Us</a></li>
+          <li><a href="index.html#services" class="hover:text-gold transition-colors">Services</a></li>
+          <li><a href="properties.html" class="hover:text-gold transition-colors">Properties</a></li>
+          <li><a href="contact.html" class="hover:text-gold transition-colors">Contact</a></li>
+        </ul>
+      </div>
+      <div>
+        <h4 class="text-white font-semibold text-sm mb-4">Contact Info</h4>
+        <ul class="space-y-2 text-xs">
+          <li class="flex items-center gap-2">
+            <svg xmlns="http://www.w3.org/2000/svg" class="h-3.5 w-3.5 text-gold flex-shrink-0" fill="none" viewBox="0 0 24 24" stroke="currentColor"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M17.657 16.657L13.414 20.9a1.998 1.998 0 01-2.827 0l-4.244-4.243a8 8 0 1111.314 0z"/><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M15 11a3 3 0 11-6 0 3 3 0 016 0z"/></svg>
+            P.O Box 21099-01803, Nairobi
+          </li>
+          <li class="flex items-center gap-2">
+            <svg xmlns="http://www.w3.org/2000/svg" class="h-3.5 w-3.5 text-gold flex-shrink-0" fill="none" viewBox="0 0 24 24" stroke="currentColor"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M3 5a2 2 0 012-2h3.28a1 1 0 01.948.684l1.498 4.493a1 1 0 01-.502 1.21l-2.257 1.13a11.042 11.042 0 005.516 5.516l1.13-2.257a1 1 0 011.21-.502l4.493 1.498a1 1 0 01.684.949V19a2 2 0 01-2 2h-1C9.716 21 3 14.284 3 6V5z" /></svg>
+            +254 759 887 156
+          </li>
+          <li class="flex items-center gap-2">
+            <svg xmlns="http://www.w3.org/2000/svg" class="h-3.5 w-3.5 text-gold flex-shrink-0" fill="none" viewBox="0 0 24 24" stroke="currentColor"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M3 8l7.89 5.26a2 2 0 002.22 0L21 8M5 19h14a2 2 0 002-2V7a2 2 0 00-2-2H5a2 2 0 00-2 2v10a2 2 0 002 2z" /></svg>
+            floraprime@gmail.com
+          </li>
+        </ul>
+      </div>
+    </div>
+    <div class="border-t border-gray-800 mt-10 pt-6 text-center text-xs text-gray-600">
+      &copy; 2024 Flora Prime Properties. All rights reserved. | Director: Paul K. Ngugi
+    </div>
+  </footer>
+
+  <script>
+    function toggleFAQ(el) {
+      const isOpen = el.classList.contains('open');
+      document.querySelectorAll('.faq-item.open').forEach(i => i.classList.remove('open'));
+      if (!isOpen) el.classList.add('open');
+    }
+
+    function submitForm() {
+      const first = document.getElementById('firstName').value.trim();
+      const last  = document.getElementById('lastName').value.trim();
+      const email = document.getElementById('email').value.trim();
+      const msg   = document.getElementById('message').value.trim();
+
+      if (!first || !last || !email || !msg) {
+        alert('Please fill in all required fields.');
+        return;
+      }
+
+      const toast = document.getElementById('toast');
+      toast.classList.remove('hidden');
+      // clear form
+      ['firstName','lastName','email','phone','message'].forEach(id => {
+        document.getElementById(id).value = '';
+      });
+      document.getElementById('service').selectedIndex = 0;
+      document.getElementById('budget').selectedIndex = 0;
+
+      setTimeout(() => toast.classList.add('hidden'), 6000);
+    }
+  </script>
+</body>
+</html>
